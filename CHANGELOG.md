@@ -4,6 +4,26 @@
 
 ---
 
+## [2026-06-30] 目次タブ設計・Noナンバリング方式に変更
+
+**変更内容:**
+- `sheets-importer.js` を目次タブ＋Noナンバリング方式に全面改修
+- 目次タブ（A:Noリンク / B:ファイル名 / C:稼働日時 / D:ログインID_ファイル名）を自動管理
+- ルックアップキー = `ログインID_ファイル名`（ファイル名固定のため安定して機能）
+- 初回: 採番 → Noタブ作成 → 目次追加 / 2回目以降: クリア → 上書き → 目次更新
+- `reportName` 引数を廃止。`importCsvToSheet(csvPath, leadSheetUrl, loginId)` の3引数に整理
+- 各 `routine.js` のコメントを更新
+
+**変更ファイル:**
+- `lib/sheets-importer.js`（全面改修）
+- `scripts/malnage-seminar/routine.js`（更新）
+- `scripts/peatix/routine.js`（更新）
+- `scripts/majisemi/routine.js`（更新）
+
+**担当:** Claude Code
+
+---
+
 ## [2026-06-30] タブ命名ルールを修正・スクリプトテンプレートを更新
 
 **変更内容:**

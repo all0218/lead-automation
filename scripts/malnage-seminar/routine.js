@@ -21,34 +21,18 @@ const ROW_INDEX      = Number(process.env.ROW_INDEX);
   // -------------------------------------------------------
   // TODO: ここにChromeレコーディング（Playwright形式）を貼り付ける
   //
-  // 例）CSVが1つの場合:
-  //   const csvPath = '/tmp/leads.csv';
-  //   await page.goto(TARGET_URL);
-  //   ... ログイン・操作 ...
-  //   await page.locator('#download').click();
-  //
-  // 例）CSVが複数の場合（reportNameで区別）:
-  //   const csvPath1 = '/tmp/leads_seminar.csv';
-  //   const csvPath2 = '/tmp/leads_inquiry.csv';
+  // 複数CSVをダウンロードする場合はそれぞれ以下のブロックを繰り返す
   // -------------------------------------------------------
 
   await browser.close();
 
   // -------------------------------------------------------
-  // CSVが1つの場合
-  // const csvPath = '/tmp/leads.csv';
+  // CSVごとに以下を繰り返す（ファイル名が目次のキーになる）
+  //
+  // const csvPath = '/tmp/1.csv';
   // const fileId = await uploadCsv(csvPath, DRIVE_URL);
-  // await importCsvToSheet(csvPath, LEAD_SHEET_URL, SITE_NAME, LOGIN_ID);
+  // await importCsvToSheet(csvPath, LEAD_SHEET_URL, LOGIN_ID);
   // await deleteDriveFile(fileId);
-  //
-  // CSVが複数ある場合（reportNameを第5引数に指定）
-  // const fileId1 = await uploadCsv(csvPath1, DRIVE_URL);
-  // await importCsvToSheet(csvPath1, LEAD_SHEET_URL, SITE_NAME, LOGIN_ID, 'セミナー参加者');
-  // await deleteDriveFile(fileId1);
-  //
-  // const fileId2 = await uploadCsv(csvPath2, DRIVE_URL);
-  // await importCsvToSheet(csvPath2, LEAD_SHEET_URL, SITE_NAME, LOGIN_ID, '問い合わせ');
-  // await deleteDriveFile(fileId2);
   // -------------------------------------------------------
 
   await notifyGas(ROW_INDEX, 'success');

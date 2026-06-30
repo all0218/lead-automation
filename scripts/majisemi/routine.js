@@ -24,10 +24,9 @@ const ROW_INDEX      = Number(process.env.ROW_INDEX);
 
   await browser.close();
 
-  // CSVが1つの場合
-  // const csvPath = '/tmp/leads.csv';
+  // const csvPath = '/tmp/1.csv';
   // const fileId = await uploadCsv(csvPath, DRIVE_URL);
-  // await importCsvToSheet(csvPath, LEAD_SHEET_URL, SITE_NAME, LOGIN_ID);
+  // await importCsvToSheet(csvPath, LEAD_SHEET_URL, LOGIN_ID);
   // await deleteDriveFile(fileId);
 
   await notifyGas(ROW_INDEX, 'success');
