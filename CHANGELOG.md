@@ -4,6 +4,23 @@
 
 ---
 
+## [2026-06-30] 共通ライブラリ（lib/）を追加
+
+**変更内容:**
+- `drive-uploader.js`：CSVをGoogleドライブにアップロード・削除
+- `sheets-importer.js`：CSVをスプレッドシートのタブに書き込み（タブ名 = サイト名、既存タブ上書き）
+- `gas-callback.js`：GASウェブアプリへの完了通知（B列書き込みトリガー）
+- フォルダID・スプレッドシートIDはURLから動的に抽出
+
+**変更ファイル:**
+- `lib/drive-uploader.js`（新規）
+- `lib/sheets-importer.js`（新規）
+- `lib/gas-callback.js`（新規）
+
+**担当:** Claude Code
+
+---
+
 ## [2026-06-30] GitHub Actionsワークフロー・package.json を追加
 
 **変更内容:**
