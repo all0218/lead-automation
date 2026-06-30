@@ -4,6 +4,28 @@
 
 ---
 
+## [2026-06-30] GASスクリプト作成・auto.yml修正
+
+**変更内容:**
+- `gas/trigger.gs` 作成（スタンドアロンGAS）
+  - ヘッダー行を動的に解析（列順変更に自動追従）
+  - 入力規則シートをサイト名キーでマップ化
+  - GitHub Actions workflow_dispatch を呼び出す
+  - doPost コールバックでマスタB列（最終稼働日時）を更新
+- `auto.yml` に `ROW_INDEX` 環境変数を追加（スクリプト実行ステップ）
+- routine.js から `notifyGas` 呼び出しを削除（コールバックはワークフロー側に一本化）
+
+**変更ファイル:**
+- `gas/trigger.gs`（新規）
+- `.github/workflows/auto.yml`（修正）
+- `scripts/malnage-seminar/routine.js`（修正）
+- `scripts/peatix/routine.js`（修正）
+- `scripts/majisemi/routine.js`（修正）
+
+**担当:** Claude Code
+
+---
+
 ## [2026-06-30] 目次タブ設計・Noナンバリング方式に変更
 
 **変更内容:**

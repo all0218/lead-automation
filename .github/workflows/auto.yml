@@ -59,6 +59,7 @@ jobs:
           PASSWORD: ${{ inputs.password }}
           DRIVE_FOLDER_URL: ${{ inputs.drive_folder_url }}
           LEAD_SHEET_URL: ${{ inputs.lead_sheet_url }}
+          ROW_INDEX: ${{ inputs.row_index }}
           GOOGLE_SERVICE_ACCOUNT_PATH: /tmp/service-account.json
         run: node ${{ inputs.script_path }}
 
