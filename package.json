@@ -1,0 +1,13 @@
+{
+  "name": "lead-automation",
+  "version": "1.0.0",
+  "description": "GitHub Actions × Google Sheets による複数サイト自動ログイン・CSVダウンロード・データ統合",
+  "private": true,
+  "scripts": {
+    "test": "echo \"No tests yet\""
+  },
+  "dependencies": {
+    "playwright": "^1.49.0",
+    "googleapis": "^144.0.0"
+  }
+}

@@ -4,6 +4,22 @@
 
 ---
 
+## [2026-06-30] GitHub Actionsワークフロー・package.json を追加
+
+**変更内容:**
+- `auto.yml` を作成（workflow_dispatch トリガー、8つのinputs定義）
+- `package.json` を作成（playwright / googleapis の依存関係定義）
+- inputs: site_name / target_url / login_id / password / script_path / drive_folder_url / lead_sheet_url / row_index
+- 実行後にGASコールバックでB列（最終稼働日時）を書き込む仕組みを実装
+
+**変更ファイル:**
+- `.github/workflows/auto.yml`（新規）
+- `package.json`（新規）
+
+**担当:** Claude Code
+
+---
+
 ## [2026-06-30] スクリプトディレクトリ構成を追加
 
 **変更内容:**

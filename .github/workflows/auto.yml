@@ -1,0 +1,74 @@
+name: Lead Automation
+
+on:
+  workflow_dispatch:
+    inputs:
+      site_name:
+        description: 'サイト名（マスタC列）'
+        required: true
+      target_url:
+        description: '対象URL（マスタD列）'
+        required: true
+      login_id:
+        description: 'ログインID（マスタE列）'
+        required: true
+      password:
+        description: 'パスワード（マスタF列）'
+        required: true
+      script_path:
+        description: 'スクリプトパス（入力規則B列）'
+        required: true
+      drive_folder_url:
+        description: 'ドライブURL（入力規則C列）'
+        required: true
+      lead_sheet_url:
+        description: 'リード格納URL（入力規則D列）'
+        required: true
+      row_index:
+        description: 'マスタの行番号（GASコールバックでB列書き込みに使用）'
+        required: true
+
+jobs:
+  run-automation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: リポジトリのチェックアウト
+        uses: actions/checkout@v4
+
+      - name: Node.js セットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 依存パッケージのインストール
+        run: npm install
+
+      - name: Playwright ブラウザのインストール
+        run: npx playwright install --with-deps chromium
+
+      - name: Google サービスアカウント認証ファイルを生成
+        run: echo '${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}' > /tmp/service-account.json
+
+      - name: 自動化スクリプトを実行
+        env:
+          SITE_NAME: ${{ inputs.site_name }}
+          TARGET_URL: ${{ inputs.target_url }}
+          LOGIN_ID: ${{ inputs.login_id }}
+          PASSWORD: ${{ inputs.password }}
+          DRIVE_FOLDER_URL: ${{ inputs.drive_folder_url }}
+          LEAD_SHEET_URL: ${{ inputs.lead_sheet_url }}
+          GOOGLE_SERVICE_ACCOUNT_PATH: /tmp/service-account.json
+        run: node ${{ inputs.script_path }}
+
+      - name: GASコールバック（最終稼働日時の書き込み）
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+          ROW_INDEX: ${{ inputs.row_index }}
+          GAS_CALLBACK_URL: ${{ secrets.GAS_CALLBACK_URL }}
+        run: |
+          curl -s -X POST "${GAS_CALLBACK_URL}" \
+            -H "Content-Type: application/json" \
+            -d "{\"row_index\": ${ROW_INDEX}, \"status\": \"${JOB_STATUS}\"}"
