@@ -4,6 +4,27 @@
 
 ---
 
+## [2026-06-30] タブ命名ルールを修正・スクリプトテンプレートを更新
+
+**変更内容:**
+- `sheets-importer.js`：タブ名を `サイト名_ログインID`（複数CSV時は `_レポート名` を追加）に変更
+- `importCsvToSheet()` の引数に `loginId`・`reportName`（省略可）を追加
+- 各 `routine.js` に lib/ の呼び出しサンプルと複数CSV時の使い方コメントを追記
+
+**タブ命名ルール:**
+- CSVが1つ: `まるなげセミナー_MN-00024`
+- CSVが複数: `まるなげセミナー_MN-00024_セミナー参加者` / `まるなげセミナー_MN-00024_問い合わせ`
+
+**変更ファイル:**
+- `lib/sheets-importer.js`（修正）
+- `scripts/malnage-seminar/routine.js`（修正）
+- `scripts/peatix/routine.js`（修正）
+- `scripts/majisemi/routine.js`（修正）
+
+**担当:** Claude Code
+
+---
+
 ## [2026-06-30] 共通ライブラリ（lib/）を追加
 
 **変更内容:**
